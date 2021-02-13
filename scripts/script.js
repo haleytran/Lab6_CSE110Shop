@@ -28,7 +28,7 @@ cartIcon.src = "./assets/cart-icon.png";
 document.getElementById("cart-icon").appendChild(cartIcon);
 
 var shopIcon = document.createElement("img");
-cartIcon.src = "./assets/shop-icon.png";
+shopIcon.src = "./assets/shop-icon.png";
 document.getElementById("shop-icon").appendChild(shopIcon);
 
 document.body.setAttribute("onunload", "myFunction()");
