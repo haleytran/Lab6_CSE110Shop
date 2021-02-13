@@ -24,9 +24,9 @@ function storeData (data) {
 }
 
 var cartIcon = document.createElement("img");
-cartIcon.src = "https://github.com/haleytran/Lab6_CSE110Shop/blob/main/assets/cart-icon.png";//"/assets/cart-icon.png";
+cartIcon.src = "./assets/cart-icon.png";
 document.getElementById("cart-icon").appendChild(cartIcon);
 
 var shopIcon = document.createElement("img");
-cartIcon.src = "/assets/shop-icon.png";
+cartIcon.src = "./assets/shop-icon.png";
 document.getElementById("shop-icon").appendChild(shopIcon);
