@@ -30,3 +30,8 @@ document.getElementById("cart-icon").appendChild(cartIcon);
 var shopIcon = document.createElement("img");
 cartIcon.src = "./assets/shop-icon.png";
 document.getElementById("shop-icon").appendChild(shopIcon);
+
+document.body.setAttribute("onunload", "myFunction()");
+function myFunction() {
+  alert("Thank you for visiting W3Schools!");
+}
