@@ -40,7 +40,7 @@ nav {
 }
 
 #shop-icon {
-  content: url("/Lab6_CSE110Shop/assets/shop-icon.png"); /* added /Lab6_CSE110Shop/ to show img */
+  content: url("./assets/shop-icon.png"); /* added /Lab6_CSE110Shop/ to show img */
 }
 
 #cart-icon {
