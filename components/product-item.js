@@ -1,6 +1,5 @@
 // product-item.js
 var i = 0;
-localStorage.setItem("cart", "{}");
 
 class ProductItem extends HTMLElement {
   // TODO
@@ -145,7 +144,6 @@ function updateCart(itemId, bool) {
     cart[itemId] = itemId;
     localStorage.setItem("cart", JSON.stringify(cart));
   } else {
-    console.log(Object.keys(cart).length);
     var keys = Object.keys(cart);
     for (var i = 0; i < keys.length; i++) {
       if (cart[keys[i]] == itemId) {

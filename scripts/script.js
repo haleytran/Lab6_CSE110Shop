@@ -1,5 +1,19 @@
 // Script.js
 
+localStorage.setItem("cart", getCart());
+function getCart() {
+  var cart = localStorage.getItem("cart");
+  var count = document.getElementById("cart-count");
+  if (cart === null || cart == "{}") {
+    count.innerHTML = 0;
+    return "{}";
+  } else {
+
+    count.innerHTML = Object.keys(JSON.parse(cart)).length;
+    return cart;
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   // TODO
   fetch("https://fakestoreapi.com/products")
@@ -21,17 +35,7 @@ function storeData (data) {
       document.getElementById("product-list").appendChild(product);
     } 
   }
-}
+} 
 
-var cartIcon = document.createElement("img");
-cartIcon.src = "./assets/cart-icon.png";
-document.getElementById("cart-icon").appendChild(cartIcon);
 
-var shopIcon = document.createElement("img");
-shopIcon.src = "./assets/shop-icon.png";
-document.getElementById("shop-icon").appendChild(shopIcon);
 
-document.body.setAttribute("onunload", "myFunction()");
-function myFunction() {
-  alert("Thank you for visiting W3Schools!");
-}
