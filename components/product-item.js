@@ -36,7 +36,7 @@ class ProductItem extends HTMLElement {
     var p2 = document.createElement("p");
     p2.setAttribute("class", "price");
     var price = parse.price;
-    var text2 = document.createTextNode(price);
+    var text2 = document.createTextNode("$" + price);
     p2.appendChild(text2);
 
     // create child button element (add to/remove from cart button)
