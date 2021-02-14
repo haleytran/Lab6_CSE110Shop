@@ -1,19 +1,25 @@
 // Script.js
 
+// update value of cart after refresh
+var cart = localStorage.getItem("cart"); 
 localStorage.setItem("cart", getCart());
 function getCart() {
-  var cart = localStorage.getItem("cart");
-  var count = document.getElementById("cart-count");
   if (cart === null || cart == "{}") {
+    var count = document.getElementById("cart-count");
     count.innerHTML = 0;
     return "{}";
   } else {
-
-    count.innerHTML = Object.keys(JSON.parse(cart)).length;
+    var item = JSON.parse(cart);
+    if (item !== null) {
+      var keys = Object.keys(item);
+      var count = document.getElementById("cart-count");
+      count.innerHTML = keys.length;
+    }
     return cart;
   }
 }
 
+// fetch data from link, store data into localStorage, and create product-item element for each item
 window.addEventListener('DOMContentLoaded', () => {
   // TODO
   fetch("https://fakestoreapi.com/products")
@@ -36,6 +42,3 @@ function storeData (data) {
     } 
   }
 } 
-
-
-

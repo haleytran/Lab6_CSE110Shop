@@ -1,5 +1,6 @@
 // product-item.js
-var i = 0;
+var j = 0; // counter to access each item in localStorage
+var storage = localStorage.getItem("cart"); // get value of cart from localStorage to change button of item respectively
 
 class ProductItem extends HTMLElement {
   // TODO
@@ -8,12 +9,15 @@ class ProductItem extends HTMLElement {
 
     var shadow = this.attachShadow({mode:'open'});
 
+    // create parent list element
     var list = document.createElement("li");
     list.setAttribute("class", "product");
 
-    var info = localStorage.getItem("item " + `${i}`);
+    // get information from item # in localStorage
+    var info = localStorage.getItem("item " + `${j}`);
     var parse = JSON.parse(info);
 
+    // create child img element (product image)
     var imgSrc = parse.image;
     var imgAlt = parse.title;
     var image = document.createElement("img");
@@ -22,20 +26,38 @@ class ProductItem extends HTMLElement {
     image.style.maxWidth = "200px";
     image.style.maxHeight = "285px";
 
+    // create child p element (product title)
     var p1 = document.createElement("p");
     p1.setAttribute("class", "title");
     var text1 = document.createTextNode(imgAlt);
     p1.appendChild(text1);
 
+    // create child p element (product price)
     var p2 = document.createElement("p");
     p2.setAttribute("class", "price");
     var price = parse.price;
     var text2 = document.createTextNode(price);
     p2.appendChild(text2);
 
+    // create child button element (add to/remove from cart button)
+    // also account for page refresh to change button properly
     var btn = document.createElement("button");
-    btn.appendChild(document.createTextNode("Add to Cart"));
-    btn.setAttribute("onclick", "alert('Added to Cart!')");
+    var item = JSON.parse(storage);
+    var btnText = "Add to Cart";
+    var alertText = "alert('Added to Cart!')";
+    if (item !== null) {
+      var keys = Object.keys(item);
+      for (var i = 0; i < keys.length; i++) {
+        if (`${j+1}` == keys[i]) {
+          btnText = "Remove from Cart";
+          alertText = "alert('Removed from Cart!')";
+        }
+      }
+    }
+    btn.appendChild(document.createTextNode(btnText));
+    btn.setAttribute("onclick", alertText);
+    
+    // button alert for add to cart and remove from cart
     btn.addEventListener("click", function() {
       var count = document.getElementById("cart-count");
       if (btn.textContent === "Add to Cart") {
@@ -123,12 +145,13 @@ class ProductItem extends HTMLElement {
     list.appendChild(p1);
     list.appendChild(p2);
     list.appendChild(btn);
-    i++;
+    j++;
   }
 }
 
 customElements.define('product-item', ProductItem);
 
+// change content of alert depending on value of button
 function alertUser(elem, bool) {
   if (bool) {
     elem.setAttribute("onclick","alert('Added to Cart!')");
@@ -137,6 +160,8 @@ function alertUser(elem, bool) {
   }
 }
 
+// update cart value (add or remove)
+// update localStorage correspondingly
 function updateCart(itemId, bool) {
   var cart = JSON.parse(localStorage.getItem("cart"));
   if (bool) {

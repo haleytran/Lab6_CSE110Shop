@@ -40,11 +40,11 @@ nav {
 }
 
 #shop-icon {
-  content: url("/Lab6_CSE110Shop/assets/shop-icon.png");
+  content: url("/Lab6_CSE110Shop/assets/shop-icon.png"); /* added /Lab6_CSE110Shop/ to show img */
 }
 
 #cart-icon {
-  content: url("/Lab6_CSE110Shop/assets/cart-icon.png");
+  content: url("/Lab6_CSE110Shop/assets/cart-icon.png"); /* added /Lab6_CSE110Shop/ to show img */
 }
 
 /* Custom Element CSS starts here */
